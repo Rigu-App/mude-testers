@@ -6,6 +6,7 @@
 set -uo pipefail
 ROOT=${GITHUB_WORKSPACE:-$PWD}; mkdir -p "$ROOT/results"; LOG="$ROOT/results/build-android.log"
 cd "$1" || exit 1
+mkdir -p "$HOME/.gradle"; printf "org.gradle.jvmargs=-Xmx6g -XX:MaxMetaspaceSize=2g -XX:+HeapDumpOnOutOfMemoryError\nkotlin.daemon.jvmargs=-Xmx3g -XX:MaxMetaspaceSize=1g\norg.gradle.workers.max=3\n" > "$HOME/.gradle/gradle.properties"   # mude: Metaspace OOM no build do rigu
 FW=$2; [ "$FW" = auto ] && FW=$(bash "$ROOT/scripts/build/detect.sh")
 echo "Framework: $FW"
 q() { "$@" >>"$LOG" 2>&1; }
