@@ -98,6 +98,7 @@ jobs:
           repository: ${{ inputs.source_repo }}
           ref: ${{ inputs.ref }}
           token: ${{ secrets.SOURCE_REPO_TOKEN || github.token }}   # the secret only for a private app repo
+          ssh-key: ${{ secrets.SOURCE_REPO_SSH_KEY }}   # rigu: chave de leitura do rigu-mobile
           path: src
           persist-credentials: false
       - uses: actions/setup-node@v4
@@ -145,6 +146,7 @@ jobs:
           repository: ${{ inputs.source_repo }}
           ref: ${{ inputs.ref }}
           token: ${{ secrets.SOURCE_REPO_TOKEN || github.token }}   # the secret only for a private app repo
+          ssh-key: ${{ secrets.SOURCE_REPO_SSH_KEY }}   # rigu: chave de leitura do rigu-mobile
           path: src
           persist-credentials: false
       - uses: actions/setup-node@v4
