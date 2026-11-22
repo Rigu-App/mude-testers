@@ -101,7 +101,7 @@ jobs:
           path: src
           persist-credentials: false
       - uses: actions/setup-node@v4
-        with: { node-version: 20 }
+        with: { node-version: 22 }
       - uses: actions/setup-java@v4
         with: { distribution: temurin, java-version: "17" }
       - uses: gradle/actions/setup-gradle@v4   # Gradle cache between runs
@@ -116,6 +116,9 @@ jobs:
           APP_DIR: ${{ inputs.source_repo != '' && format('src/{0}', inputs.app_dir) || inputs.app_dir }}
           BUILD_COMMAND: ${{ inputs.android_build }}
           ARTIFACT: ${{ inputs.apk_path }}
+          APP_VARIANT: ${{ vars.APP_VARIANT }}
+          EXPO_PUBLIC_API_URL: ${{ vars.EXPO_PUBLIC_API_URL }}
+          EXPO_PUBLIC_AMBIENTE: ${{ vars.EXPO_PUBLIC_AMBIENTE }}
         run: bash scripts/build/android.sh "$APP_DIR" "${{ inputs.framework }}"
       - name: Encrypt APK
         env: { ARTIFACT_PASSPHRASE: "${{ secrets.ARTIFACT_PASSPHRASE }}" }
@@ -132,7 +135,7 @@ jobs:
   build-ios:
     needs: plan
     if: needs.plan.outputs.ios != '[]'
-    runs-on: macos-15
+    runs-on: macos-26
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
@@ -145,7 +148,7 @@ jobs:
           path: src
           persist-credentials: false
       - uses: actions/setup-node@v4
-        with: { node-version: 20 }
+        with: { node-version: 22 }
       - uses: actions/setup-java@v4   # Kotlin Multiplatform builds call Gradle from Xcode
         with: { distribution: temurin, java-version: "17" }
       - name: Latest Xcode
@@ -162,6 +165,9 @@ jobs:
           APP_DIR: ${{ inputs.source_repo != '' && format('src/{0}', inputs.app_dir) || inputs.app_dir }}
           BUILD_COMMAND: ${{ inputs.ios_build }}
           ARTIFACT: ${{ inputs.ios_app_path }}
+          APP_VARIANT: ${{ vars.APP_VARIANT }}
+          EXPO_PUBLIC_API_URL: ${{ vars.EXPO_PUBLIC_API_URL }}
+          EXPO_PUBLIC_AMBIENTE: ${{ vars.EXPO_PUBLIC_AMBIENTE }}
           IOS_SCHEME: ${{ vars.IOS_SCHEME }}   # optional repo variable, for projects with several schemes
         run: bash scripts/build/ios.sh "$APP_DIR" "${{ inputs.framework }}"
       - name: Encrypt .app
@@ -240,6 +246,8 @@ jobs:
           MODEL: ${{ inputs.model }}
           LLM_BASE_URL: ${{ inputs.llm_base_url }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          SENHA_MORADOR: ${{ secrets.SENHA_MORADOR }}
+          SENHA_SINDICO: ${{ secrets.SENHA_SINDICO }}
           BLOCK_HOSTS: ${{ inputs.block_hosts }}
           RECORD_VIDEO: ${{ inputs.record_video }}
         with:
@@ -261,7 +269,7 @@ jobs:
 
   ios:
     needs: [plan, build-ios]
-    runs-on: macos-15
+    runs-on: macos-26
     timeout-minutes: 120
     strategy:
       fail-fast: false
@@ -344,6 +352,8 @@ jobs:
           MODEL: ${{ inputs.model }}
           LLM_BASE_URL: ${{ inputs.llm_base_url }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          SENHA_MORADOR: ${{ secrets.SENHA_MORADOR }}
+          SENHA_SINDICO: ${{ secrets.SENHA_SINDICO }}
           BLOCK_HOSTS: ${{ inputs.block_hosts }}
           RECORD_VIDEO: ${{ inputs.record_video }}
         run: bash scripts/ios/run_agent.sh
