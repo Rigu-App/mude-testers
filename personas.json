@@ -426,5 +426,169 @@
       "text_size": "large",
       "theme": "dark"
     }
+  },
+  {
+    "id": "didi_lia",
+    "platform": "android",
+    "app": "didi",
+    "profile": "Mãe de aluno, 36 anos, usa o celular com fonte um pouco maior, abre o app no intervalo do trabalho.",
+    "goal": "Entrar como família, ver o resumo do dia do filho, ler os recados da escola, responder um recado e ver a galeria de fotos.",
+    "conta": "didi-familia",
+    "email": "gustavo.familia@teste.didi.invalid",
+    "locale": "pt-BR",
+    "geo": [
+      -23.5505,
+      -46.6333
+    ],
+    "device": {
+      "name": "Celular pequeno, Android 11",
+      "profile": "Nexus 5",
+      "android_api": 30,
+      "font_scale": 1.3,
+      "theme": "light"
+    }
+  },
+  {
+    "id": "didi_renata",
+    "platform": "android",
+    "app": "didi",
+    "profile": "Professora de educação infantil, 29 anos, fonte 200% por causa de cansaço visual, tema escuro, usa o app no meio da turma.",
+    "goal": "Entrar como professora, registrar o diário de um aluno (alimentação, sono, troca), mandar um recado para uma família e ver a lista da turma.",
+    "conta": "didi-professora",
+    "email": "gustavo.professora@teste.didi.invalid",
+    "locale": "pt-BR",
+    "geo": [
+      -23.5505,
+      -46.6333
+    ],
+    "device": {
+      "name": "Pixel 7, Android 14, fonte 200%",
+      "profile": "pixel_7",
+      "android_api": 34,
+      "font_scale": 2.0,
+      "theme": "dark"
+    }
+  },
+  {
+    "id": "didi_marcos",
+    "platform": "ios",
+    "app": "didi",
+    "profile": "Pai, 44 anos, baixa visão, usa o maior tamanho de texto de acessibilidade no iPhone SE.",
+    "goal": "Entrar como família, ver o que o filho comeu e se dormiu hoje, ver a agenda e os recados não lidos.",
+    "conta": "didi-familia",
+    "email": "gustavo.familia@teste.didi.invalid",
+    "locale": "pt-BR",
+    "geo": [
+      -23.5505,
+      -46.6333
+    ],
+    "device": {
+      "simulator": "iPhone SE (3rd generation)",
+      "ios": 26,
+      "text_size": "accessibility-extra-extra-extra-large",
+      "theme": "light"
+    }
+  },
+  {
+    "id": "didi_julia",
+    "platform": "ios",
+    "app": "didi",
+    "profile": "Professora, 33 anos, repara em tudo, tema escuro, pressa entre uma atividade e outra.",
+    "goal": "Entrar como professora, preencher o diário da turma do dia, conferir a chamada e mandar um recado geral para a turma.",
+    "conta": "didi-professora",
+    "email": "gustavo.professora@teste.didi.invalid",
+    "locale": "pt-BR",
+    "geo": [
+      -23.5505,
+      -46.6333
+    ],
+    "device": {
+      "simulator": "iPhone 17 Pro",
+      "ios": 26,
+      "text_size": "large",
+      "theme": "dark"
+    }
+  },
+  {
+    "id": "sac_ana",
+    "platform": "android",
+    "app": "sacando",
+    "profile": "Curiosa por vinho, 31 anos, nunca usou o app, fonte 1,3x.",
+    "goal": "Abrir o app sem conta, navegar pela vitrine e pela loja, ler o rótulo de um vinho, depois criar conta pelo WhatsApp e salvar um vinho em Quero provar.",
+    "conta": "whatsapp",
+    "telefone": "11 90000-0101",
+    "locale": "pt-BR",
+    "geo": [
+      -23.5505,
+      -46.6333
+    ],
+    "device": {
+      "name": "Celular pequeno, Android 11",
+      "profile": "Nexus 5",
+      "android_api": 30,
+      "font_scale": 1.3,
+      "theme": "light"
+    }
+  },
+  {
+    "id": "sac_bruno",
+    "platform": "android",
+    "app": "sacando",
+    "profile": "Apreciador de vinho, 47 anos, fonte 200%, tema escuro, quer organizar a própria adega.",
+    "goal": "Entrar pelo WhatsApp, adicionar um vinho à adega, avaliar um vinho, marcar Vou num evento e colocar um item no carrinho da loja (sem pagar).",
+    "conta": "whatsapp",
+    "telefone": "11 90000-0102",
+    "locale": "pt-BR",
+    "geo": [
+      -23.5505,
+      -46.6333
+    ],
+    "device": {
+      "name": "Pixel 7, Android 14, fonte 200%",
+      "profile": "pixel_7",
+      "android_api": 34,
+      "font_scale": 2.0,
+      "theme": "dark"
+    }
+  },
+  {
+    "id": "sac_clara",
+    "platform": "ios",
+    "app": "sacando",
+    "profile": "Sommelière amadora, 38 anos, maior texto de acessibilidade no iPhone SE.",
+    "goal": "Navegar como visitante pela vitrine e eventos, depois entrar pelo WhatsApp e avaliar um vinho com nota e comentário.",
+    "conta": "whatsapp",
+    "telefone": "11 90000-0103",
+    "locale": "pt-BR",
+    "geo": [
+      -23.5505,
+      -46.6333
+    ],
+    "device": {
+      "simulator": "iPhone SE (3rd generation)",
+      "ios": 26,
+      "text_size": "accessibility-extra-extra-extra-large",
+      "theme": "light"
+    }
+  },
+  {
+    "id": "sac_diego",
+    "platform": "ios",
+    "app": "sacando",
+    "profile": "Designer, 34 anos, repara em cada detalhe visual, tema escuro.",
+    "goal": "Entrar pelo WhatsApp, explorar adega, loja e eventos e julgar se o app é bonito e fácil; tentar o carrinho até antes de pagar.",
+    "conta": "whatsapp",
+    "telefone": "11 90000-0104",
+    "locale": "pt-BR",
+    "geo": [
+      -23.5505,
+      -46.6333
+    ],
+    "device": {
+      "simulator": "iPhone 17 Pro",
+      "ios": 26,
+      "text_size": "large",
+      "theme": "dark"
+    }
   }
 ]
