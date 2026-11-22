@@ -170,7 +170,8 @@ jobs:
           APP_VARIANT: ${{ vars.APP_VARIANT }}
           EXPO_PUBLIC_API_URL: ${{ vars.EXPO_PUBLIC_API_URL }}
           EXPO_PUBLIC_AMBIENTE: ${{ vars.EXPO_PUBLIC_AMBIENTE }}
-          IOS_SCHEME: ${{ vars.IOS_SCHEME }}   # optional repo variable, for projects with several schemes
+          IOS_SCHEME: ${{ vars.IOS_SCHEME }}
+          IOS_SIGN: CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM= PROVISIONING_PROFILE_SPECIFIER= CODE_SIGNING_REQUIRED=NO   # mude: entitlements no simulador   # optional repo variable, for projects with several schemes
         run: bash scripts/build/ios.sh "$APP_DIR" "${{ inputs.framework }}"
       - name: Encrypt .app
         env: { ARTIFACT_PASSPHRASE: "${{ secrets.ARTIFACT_PASSPHRASE }}" }

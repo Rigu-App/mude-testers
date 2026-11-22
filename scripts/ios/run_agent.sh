@@ -40,4 +40,5 @@ if [ -n "$REC" ]; then
   for _ in $(seq 1 30); do kill -0 "$REC" 2>/dev/null || break; sleep 1; done
   cat "$RUNNER_TEMP/rec.log"; ls -l "results/$PERSONA/video"
 fi
+mkdir -p "results/$PERSONA/crash"; cp ~/Library/Logs/DiagnosticReports/*.ips "results/$PERSONA/crash/" 2>/dev/null || true   # mude
 echo "Agent finished (exit $CODE), $(ls "results/$PERSONA" | wc -l) files"

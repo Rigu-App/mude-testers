@@ -26,7 +26,7 @@ print(base if base in sc else sc[0])" "$c")}
   echo "Scheme: $s"
   q xcodebuild "$@" -scheme "$s" -configuration "${IOS_CONFIGURATION:-Release}" -sdk iphonesimulator \
     -destination 'generic/platform=iOS Simulator' -derivedDataPath "$RUNNER_TEMP/dd" \
-    EXCLUDED_ARCHS=x86_64 ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=NO build || fail
+    EXCLUDED_ARCHS=x86_64 ONLY_ACTIVE_ARCH=YES ${IOS_SIGN:-CODE_SIGNING_ALLOWED=NO} build || fail
   OUT=$(find "$RUNNER_TEMP/dd/Build/Products" -maxdepth 2 -path '*iphonesimulator/*.app' -not -name '*Tests*' | head -1)
 }
 
@@ -57,20 +57,4 @@ else case "$FW" in
   *) echo "::error::Unknown framework $FW"; exit 1 ;;
 esac; fi
 [ -n "${OUT:-}" ] && [ -d "$OUT" ] || { echo "::error::No Simulator .app found after the $FW build"; exit 1; }
-# mude: build sem assinatura nao tem entitlements e o chaveiro do simulador recusa
-# (SecureStore: "A required entitlement isn't present"). Assina ad-hoc com chaveiro + app group.
-BID=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$OUT/Info.plist" 2>/dev/null)
-if [ -n "$BID" ]; then
-  ENT="$RUNNER_TEMP/sim.entitlements"
-  cat > "$ENT" <<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0"><dict>
-<key>application-identifier</key><string>SIMTESTERS.$BID</string>
-<key>keychain-access-groups</key><array><string>SIMTESTERS.$BID</string></array>
-<key>com.apple.security.application-groups</key><array><string>group.$BID</string></array>
-</dict></plist>
-EOF
-  q codesign --force --deep --sign - "$OUT" && q codesign --force --sign - --entitlements "$ENT" "$OUT" && echo "Ad-hoc signed with keychain entitlements" || echo "::warning::ad-hoc signing failed"
-fi
 tar czf "$ROOT/app-ios.tgz" -C "$(dirname "$OUT")" "$(basename "$OUT")"; echo "Simulator app ready ($FW)"
